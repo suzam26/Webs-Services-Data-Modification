@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+
+    <title>RESTful Web Services Demo</title>
+    <script
+      src="https://code.jquery.com/jquery-3.6.0.min.js"
+      integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
+      crossorigin="anonymous"
+    ></script>
+    <script>
+      $(() => {
+        $("#btnUpdatePut").click((evt) => {
+          const form = evt.target.form;
+          console.log(form.action);
+          $.ajax({
+            url: form.action,
+            type: "PUT",
+            data: $(form).serialize(),
+            success: (data, textStatus, xhr) => {
+              document.write('Vehicle successfully updated.');
+            },
+            error: (xhr, textStatus, errorThrown) => {
+              document.write(xhr.responseText);
+            }
+          });
+        });
+        
+        $("#deleteLink").click((evt) => {
+          evt.preventDefault();
+
+          $.ajax({
+            url: "vehicles/2",
+            type: "DELETE",
+            success: (data, textStatus, xhr) => {
+              document.write('Vehicle successfully deleted.');
+            },
+            error: (xhr, textStatus, errorThrown) => {
+              document.write(xhr.responseText);
+            }
+          });
+        });
+      }); 
+    </script>
+  </head>
+  <body>
+    <!-- Bootstrap CSS -->
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+      integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+      crossorigin="anonymous"
+    />
+    <div class="container">
+      <h1>RESTful Web Services</h1>
+      <h2>Data Modification Demo</h2>
+      <br />
+      <h3>Add Vehicle via POST</h3>
+      <form id="vehicleForm" action="/vehicles" method="POST">
+        <div class="form-group">
+          <label for="id">ID</label>
+          <input readonly value="4" class="form-control" name="id" />
+        </div>
+
+        <div class="form-group">
+          <label for="make">Make</label>
+          <input readonly value="Pontiac" class="form-control" name="make" />
+        </div>
+
+        <div class="form-group">
+          <label for="model">Model</label>
+          <input readonly value="Sunfire" class="form-control" name="model" />
+        </div>
+
+        <div class="form-group">
+          <label for="year">Year</label>
+          <input readonly value="2000" class="form-control" name="year" />
+        </div>
+
+        <div class="form-group">
+          <label for="color">Color</label>
+          <input readonly value="gold" class="form-control" name="color" />
+        </div>
+
+        <div class="form-group">
+          <label for="plateNumber">Plate Number</label>
+          <input readonly
+            value="123 RTF"
+            class="form-control"
+            name="plateNumber"
+          />
+        </div>
+
+        <div class="form-group">
+          <label for="vin">VIN Number</label>
+          <input readonly
+            value="2C8GM68434R636905"
+            class="form-control"
+            name="vin"
+          />
+        </div>
+
+        <!--Other fields-->
+        <button id="btnAddPost" type="submit" class="btn btn-primary">Add</button>
+      </form>
+      <br />
+
+      <h3>Update Vehicle 1 via POST</h3>
+      <form id="vehicleForm" action="/vehicles/1" method="POST">
+        <div class="form-group">
+          <label for="id">ID</label>
+          <input readonly value="1" class="form-control" name="id" />
+        </div>
+
+        <div class="form-group">
+          <label for="make">Make</label>
+          <input readonly value="Honda" class="form-control" name="make" />
+        </div>
+
+        <div class="form-group">
+          <label for="model">Model</label>
+          <input readonly value="Accord" class="form-control" name="model" />
+        </div>
+
+        <div class="form-group">
+          <label for="year">Year</label>
+          <input readonly value="2000" class="form-control" name="year" />
+        </div>
+
+        <div class="form-group">
+          <label for="color">Color</label>
+          <input readonly value="lime green" class="form-control" name="color" />
+        </div>
+
+        <div class="form-group">
+          <label for="plateNumber">Plate Number</label>
+          <input readonly
+            value="OU812"
+            class="form-control"
+            name="plateNumber"
+          />
+        </div>
+
+        <div class="form-group">
+          <label for="vin">VIN Number</label>
+          <input readonly
+            value="1G1ZT51806F128009"
+            class="form-control"
+            name="vin"
+          />
+        </div>
+
+        <!--Other fields-->
+        <button id="btnUpdatePost" type="submit" class="btn btn-primary" >Update</button>
+      </form>
+
+      <br />
+      <h3>Update Vehicle 1 via PUT</h3>
+      <form id="vehicleForm" action="/vehicles/1">
+        <div class="form-group">
+          <label for="id">ID</label>
+          <input readonly value="1" class="form-control" name="id" />
+        </div>
+
+        <div class="form-group">
+          <label for="make">Make</label>
+          <input readonly value="Honda" class="form-control" name="make" />
+        </div>
+
+        <div class="form-group">
+          <label for="model">Model</label>
+          <input readonly value="Accord" class="form-control" name="model" />
+        </div>
+
+        <div class="form-group">
+          <label for="year">Year</label>
+          <input readonly value="2010" class="form-control" name="year" />
+        </div>
+
+        <div class="form-group">
+          <label for="color">Color</label>
+          <input readonly value="red" class="form-control" name="color" />
+        </div>
+
+        <div class="form-group">
+          <label for="plateNumber">Plate Number</label>
+          <input readonly
+            value="OU812"
+            class="form-control"
+            name="plateNumber"
+          />
+        </div>
+
+        <div class="form-group">
+          <label for="vin">VIN Number</label>
+          <input readonly
+            value="1G1ZT51806F128009"
+            class="form-control"
+            name="vin"
+          />
+        </div>
+
+        <!--Other fields-->
+        <button id="btnUpdatePut" type="button" class="btn btn-primary">Update</button>
+      </form>
+
+      <br />
+      <br />
+      <h2><a id="deleteLink" href="#">Delete the 2nd Vehicle in the list</a></h2>
+      <br />
+      <br />
+    </div>
+  </body>
+</html>
